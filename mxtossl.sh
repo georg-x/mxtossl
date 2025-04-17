@@ -69,9 +69,14 @@ ls -1 *.tar.gz | while read LINE; do
     rm -rf $XPATH
     tar -xzf $LINE
     cd $XPATH
-    ./config
+    # https://docs.google.com/presentation/d/1_io0pYZAp-x_jJqJ6uE1kZvEtJ25rtshwPaR0xw2ehc/edit#slide=id.g2ef1e97c324_0_0
+    # libcrypto - smaller by 33%
+    # libssl - smaller by 42%
+    # enable-ec_nistp_64_gcc_128 no-argon2 no-aria no-async no-bf no-blake2 no-camellia no-cast no-cmp no-cms no-comp no-deprecated no-des no-dgram no-dh no-dsa no-ec2m no-engine no-gost no-http no-idea no-legacy no-md4 no-mdc2 no-multiblock no-nextprotoneg no-ocb no-ocsp no-quic no-rc2 no-rc4 no-rmd160 no-scrypt no-seed no-siphash no-siv no-sm2 no-sm3 no-sm4 no-srp no-srtp no-ts no-whirlpool -Os
+    ./config no-argon2 no-aria no-async no-bf no-blake2 no-camellia no-cast no-cmp no-cms no-comp no-deprecated no-des no-dgram no-dh no-dsa no-ec2m no-engine no-gost no-http no-idea no-legacy no-md4 no-mdc2 no-multiblock no-nextprotoneg no-ocb no-ocsp no-quic no-rc2 no-rc4 no-rmd160 no-scrypt no-seed no-siphash no-siv no-sm2 no-sm3 no-sm4 no-srp no-srtp no-ts no-whirlpool -Os
+
     make
-    cd $XPATH
+ 
     # teste binary
     cd apps
     ./openssl.exe version
