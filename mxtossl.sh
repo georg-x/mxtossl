@@ -64,6 +64,7 @@ check_tool "gcc"  "gcc"  "$REQUIRED_GCC"  "gcc --version"
 ls -1 *.tar.gz | while read LINE; do 
     echo $LINE
     #LINE=openssl-3.5.0-beta1.tar.gz
+    PWD=$(pwd)
     XPATH=${LINE%%.tar.gz}
     VERSION=${XPATH##openssl-}
     rm -rf $XPATH
@@ -74,7 +75,7 @@ ls -1 *.tar.gz | while read LINE; do
     # libssl - smaller by 42%
     # enable-ec_nistp_64_gcc_128 no-argon2 no-aria no-async no-bf no-blake2 no-camellia no-cast no-cmp no-cms no-comp no-deprecated no-des no-dgram no-dh no-dsa no-ec2m no-engine no-gost no-http no-idea no-legacy no-md4 no-mdc2 no-multiblock no-nextprotoneg no-ocb no-ocsp no-quic no-rc2 no-rc4 no-rmd160 no-scrypt no-seed no-siphash no-siv no-sm2 no-sm3 no-sm4 no-srp no-srtp no-ts no-whirlpool -Os
     # enable-ec_nistp_64_gcc_128 Option nicht für Mobaxterm verfügbar, weil kein 128 Bit Datentype verfügbar ist
-    ./config no-argon2 no-aria no-async no-bf no-blake2 no-camellia no-cast no-cmp no-cms no-comp no-deprecated no-des no-dgram no-dh no-dsa no-ec2m no-engine no-gost no-http no-idea no-legacy no-md4 no-mdc2 no-multiblock no-nextprotoneg no-ocb no-ocsp no-quic no-rc2 no-rc4 no-rmd160 no-scrypt no-seed no-siphash no-siv no-sm2 no-sm3 no-sm4 no-srp no-srtp no-ts no-whirlpool -Os
+    ./config no-aria no-async no-bf no-blake2 no-camellia no-cast no-cmp no-cms no-comp no-deprecated no-des no-dgram no-dh no-dsa no-ec2m no-engine no-gost no-idea no-legacy no-md4 no-mdc2 no-multiblock no-nextprotoneg no-ocb no-ocsp no-rc2 no-rc4 no-rmd160 no-scrypt no-seed no-siphash no-siv no-sm2 no-sm3 no-sm4 no-srp no-srtp no-ts no-whirlpool -Os
 
     make
  
@@ -87,6 +88,7 @@ ls -1 *.tar.gz | while read LINE; do
     cp cygssl-3.dll bin
     zip ${XPATH}.mxt3 bin/*
     mv ${XPATH}.mxt3 ../../
+    cd $PWD
 done 
 
 # Entpacke alle diese Files
