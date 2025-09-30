@@ -64,7 +64,7 @@ check_tool "gcc"  "gcc"  "$REQUIRED_GCC"  "gcc --version"
 ls -1 *.tar.gz | while read LINE; do 
     echo $LINE
     #LINE=openssl-3.5.0-beta1.tar.gz
-    PWD=$(pwd)
+    XPWD=$(pwd)
     XPATH=${LINE%%.tar.gz}
     VERSION=${XPATH##openssl-}
     rm -rf $XPATH
@@ -89,7 +89,7 @@ ls -1 *.tar.gz | while read LINE; do
     cp cygssl-3.dll bin
     zip ${XPATH}.mxt3 bin/*
     mv ${XPATH}.mxt3 ../../
-    cd $PWD
+    cd $XPWD
 done 
 
 # Entpacke alle diese Files
